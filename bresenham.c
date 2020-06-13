@@ -8,37 +8,32 @@ void init() {
 	gluOrtho2D(0, 500, 0, 500);
 }
 
-void display() {
-    
-    float x_init = 1;
-    float y_init = 1;
-
-    float x_end = 600;
-    float y_end = 450;
-
-    float diff = (x_end-x_init)/(y_end-y_init);
-
-    float x = x_init;
-    float y = y_init;
+void draw_line(float x1, float y1, float x2, float y2) {
+    float diff = (x2-x1)/(y2-y1);
     printf("diff: %f\n", diff);
-    glBegin(GL_POINTS);
-        float error = 0;
+    float x = x1;
+    float y = y1;
+    
+    float error = 0;
 
-        while(x < x_end) {
-            error = error + diff;
-            if (error >= 0.5) {
-                y = y + 1;
-                error = error - 1;
-            }
-
-            x = x + 1;
-            glVertex2i(x, y);
-
-            printf("x: %f, y: %f, error: %f\n", x, y, error);
+    while(x < x2) {
+        error = error + diff;
+        if (error >= 0.5) {
+            y = y + 1;
+            error = error - 1;
         }
 
-    glEnd();
+        x = x + 1;
+        glVertex2i(x, y);
 
+        printf("x: %f, y: %f, error: %f\n", x, y, error);
+    }
+}
+
+void display() {
+    glBegin(GL_POINTS);
+    draw_line(0,0, 500, 500);
+    glEnd();
     glFlush();
 }
 
