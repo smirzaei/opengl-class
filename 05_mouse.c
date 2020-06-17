@@ -14,7 +14,7 @@ void display() {
     glFlush();
 }
 
-void mouse(int button, int state, int x, int y) {
+void mouse_button_fn(int button, int state, int x, int y) {
     // Button:
     // GLUT_LEFT_BUTTON
     // GLUT_MIDDLE_BUTTON
@@ -27,11 +27,17 @@ void mouse(int button, int state, int x, int y) {
     printf("Button: %d - State: %d @ (%d,%d)\n", button, state, x, y);
 }
 
+void mouse_move(int x, int y) {
+    printf("Mouse move @ (%d, %d)\n", x, y);
+}
+
+
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutCreateWindow("Mouse.");
     glutDisplayFunc(display);
-    glutMouseFunc(mouse);
+    glutMouseFunc(mouse_button_fn);
+    glutPassiveMotionFunc(mouse_move);
     glutMainLoop();
 
     return 0;
