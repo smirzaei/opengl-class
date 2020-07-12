@@ -4,8 +4,8 @@
 void init() {
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(0.0, 0.0, 0.0, 1.0);
-	glMatrixMode(GL_PROJECTION);
-	gluOrtho2D(0, 500, 0, 500);
+    glMatrixMode(GL_PROJECTION);
+    gluOrtho2D(0, 500, 0, 500);
 }
 
 void display() {
